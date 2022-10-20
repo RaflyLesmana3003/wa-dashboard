@@ -15,6 +15,18 @@ class HomeController extends Controller
         return view('dashboards.dashboard', compact('assets'));
     }
 
+    public function wa_blast(Request $request)
+    {
+        $assets = ['chart', 'animation'];
+        return view('wa.wa_blast', compact('assets'));
+    }
+
+    public function wa_bot(Request $request)
+    {
+        $assets = ['chart', 'animation'];
+        return view('wa.wa_bot', compact('assets'));
+    }
+    
     /*
      * Menu Style Routs
      */
@@ -117,7 +129,7 @@ class HomeController extends Controller
     }
     public function signup(Request $request)
     {
-        return view('auth.register');
+        return view('auth.login');
     }
     public function confirmmail(Request $request)
     {

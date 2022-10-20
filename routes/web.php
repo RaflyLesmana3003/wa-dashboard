@@ -2,6 +2,7 @@
 
 // Controllers
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlastTemplateController;
 use App\Http\Controllers\Security\RolePermission;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
@@ -27,14 +28,26 @@ Route::get('/storage', function () {
     Artisan::call('storage:link');
 });
 
+
 //UI Pages Routs
-Route::get('/', [HomeController::class, 'uisheet'])->name('uisheet');
+Route::get('/uisheet', [HomeController::class, 'uisheet'])->name('uisheet');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'wa'], function() {
+        //Example Page Routs
+        Route::get('blast', [HomeController::class, 'wa_blast'])->name('wa.blast');
+        Route::get('bot', [HomeController::class, 'wa_bot'])->name('wa.bot');
+
+
+        Route::post('submit', [BlastTemplateController::class, 'submit_blasting'])->name('wa.blast-submit');
+    });
     // Permission Module
     Route::get('/role-permission',[RolePermission::class, 'index'])->name('role.permission.list');
     Route::resource('permission',PermissionController::class);
     Route::resource('role', RoleController::class);
+
+    // // Dashboard Routes
+    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
     // Dashboard Routes
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
