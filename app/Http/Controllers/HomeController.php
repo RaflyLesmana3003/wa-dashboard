@@ -26,6 +26,12 @@ class HomeController extends Controller
         $assets = ['chart', 'animation'];
         return view('wa.wa_bot', compact('assets'));
     }
+
+    public function wa_bot_wiki(Request $request)
+    {
+        $assets = ['chart', 'animation'];
+        return view('wa.wa_bot_wiki', compact('assets'));
+    }
     
     /*
      * Menu Style Routs

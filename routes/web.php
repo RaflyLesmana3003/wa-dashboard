@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
         //Example Page Routs
         Route::get('blast', [HomeController::class, 'wa_blast'])->name('wa.blast');
         Route::get('bot', [HomeController::class, 'wa_bot'])->name('wa.bot');
+        Route::get('bot-wiki', [HomeController::class, 'wa_bot_wiki'])->name('wa.bot.wiki');
 
 
         Route::post('submit', [BlastTemplateController::class, 'submit_blasting'])->name('wa.blast-submit');
